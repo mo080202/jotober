@@ -1,0 +1,20 @@
+.row
+  .col-md-4
+  .col-md-4.test
+    | Jotly
+  .col-md-4
+    .icon
+      = link_to session[:email], user_path(session[:user_id])
+      a href=new_jot_path
+        span.glyphicon.glyphicon-pencil.glyph aria-hidden="true"
+      a href=user_path(session[:user_id])
+        span.glyphicon.glyphicon-user.glyph aria-hidden="true"
+      a href=root_path
+        span.glyphicon.glyphicon-off.glyph aria-hidden="true"
+ul.nav.nav-tabs
+  li role="presentation"
+    a href=jots_path All jots
+  li role="presentation"
+    a href="/feed" Your feed
+  li role="presentation"
+    a href="/location" Jots by location

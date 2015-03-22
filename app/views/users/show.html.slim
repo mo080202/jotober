@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-xs-6.col-lg-3
+      - if current_user?(@user)
+        h2 Your Profile
+        h3 = @user.email
+      - else
+        h3 = @user.email
+      -unless current_user?(@user)
+        - if current_user.following?(@user)
+          = render 'unfollow'
+        - else
+          = render 'follow'
+    .col-xs-12.col-sm-6.col-lg-9
+      - if current_user?(@user)
+        h2 Your jots
+      - else
+        h2 Jots
+      .list-group
+        ul.media-list
+          li.media
+            - @jots.each do |jot|
+              a.list-group-item href=jot_path(jot)
+                .media-left
+                  img.media-object src=jot.photo.url(:medium)
+                .media-body
+                  h4.list-group-item-heading = jot.content
+                  p.list-group-item-text = jot_author(jot)
+                  = jot.likes.size
+                  |  Likes
+                .media-right.media-middle
+                  span.glyphicon.glyphicon-menu-right aria-hidden="true"

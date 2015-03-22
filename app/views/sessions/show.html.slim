@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-lg-6
+      h2 Sign in
+      .well.bs-component
+        = form_tag
+        input.form-control type="text" id="email" name="email" placeholder="Email"
+        br
+        br
+        button.btn.btn-primary type="submit" Sign in
+        br
+        br
+        = link_to 'Need a login?', new_user_path

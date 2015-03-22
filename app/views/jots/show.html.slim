@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-lg-6
+      .well
+        h2 = @jot.content
+        | Posted by:
+        =< link_to jot_author(@jot), user_path(id: @jot.user_id)
+        br
+        br
+        - if has_not_liked?(@jot)
+          = button_to 'Like', like_jot_path(@jot), class: 'btn btn-success'
+        -else
+          = button_to 'Unlike', unlike_jot_path(@jot), class: 'btn btn-default'
+        br
+        - if jot_author?(@jot)
+          => link_to 'Edit', edit_jot_path(@jot)
+          =< link_to 'Delete', jot_path(@jot), method: :delete

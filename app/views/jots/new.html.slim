@@ -1,0 +1,19 @@
+- content_for :head
+  javascript:
+    navigator.geolocation.getCurrentPosition(function(position){
+      $('#jot_latitude').val(position.coords.latitude)
+      $('#jot_longitude').val(position.coords.longitude)
+      })
+.container
+  .row
+    .col-lg-6
+      h2 Create a jot
+      .well.bs-component
+        = form_for @jot, html: { :multipart => true } do |f|
+          / = f.label :content, 'Your jot'
+          = f.text_field :content, class: 'form-control'
+          = f.hidden_field :latitude
+          = f.hidden_field :longitude
+          = f.file_field :photo
+          br
+          = f.submit class: 'btn btn-primary'

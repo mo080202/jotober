@@ -1,0 +1,16 @@
+.container
+  h2 Jots within 5 miles of Baltimore, MD
+  .list-group
+    ul.media-list
+      li.media
+        - @jots.each do |jot|
+          a.list-group-item href=jot_path(jot)
+            .media-left
+              img.media-object src=jot.photo.url(:medium)
+            .media-body
+              h4.list-group-item-heading = jot.content
+              p.list-group-item-text = jot_author(jot)
+              = jot.likes.size
+              |  Likes
+            .media-right.media-middle
+              span.glyphicon.glyphicon-menu-right aria-hidden="true"

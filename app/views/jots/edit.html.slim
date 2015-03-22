@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-lg-6
+      h2 Edit jot
+      .well.bs-component
+        = form_for @jot, html: { :multipart => true } do |f|
+          = f.label :content
+          = f.text_field :content, class: 'form-control'
+          br
+          = f.submit class: 'btn btn-primary'
