@@ -7,6 +7,7 @@ gem 'paperclip', '~> 4.2'
 gem 'geocoder'
 gem 'sidekiq'
 gem 'exifr'
+gem 'sinatra', :require => nil
 gem 'rails_12factor', group: :production
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'

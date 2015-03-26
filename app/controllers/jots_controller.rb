@@ -6,13 +6,16 @@ class JotsController < ApplicationController
     @jot = Jot.find(params[:id])
   end
   def locationfeed
-    @jots = Jot.near([39.2847064, -76.620486], 5)
+    # @jots = Jot.near([39.2847064, -76.620486], 5)
+    @jots = Jot.near('Baltimore, MD, US', 5)
   end
   def new
     @jot = Jot.new
   end
   def create
-    Jot.create(jot_params)
+    jot = Jot.create(jot_params)
+    # ExtractLatLngJob.perform_later @jot
+    JotMailer.send_to_followers(jot).deliver_later
     redirect_to jots_path
   end
   def edit
@@ -38,6 +41,9 @@ class JotsController < ApplicationController
     jot.likes.where(user_id: current_user.id).delete_all
     redirect_to jot_path(jot)
   end
+
+
+
   private
   def jot_params
     params.require(:jot).permit(:content, :photo, :latitude, :longitude).merge(user_id: session[:user_id])
