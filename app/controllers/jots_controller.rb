@@ -7,7 +7,11 @@ class JotsController < ApplicationController
   end
   def locationfeed
     # @jots = Jot.near([39.2847064, -76.620486], 5)
-    @jots = Jot.near('Baltimore, MD, US', 5)
+    if params[:search].present?
+      @jots = Jot.near(params[:search], 5)
+    else
+      @jots = Jot.all.order(updated_at: :desc)
+    end
   end
   def new
     @jot = Jot.new

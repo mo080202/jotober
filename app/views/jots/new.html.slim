@@ -10,7 +10,6 @@
       h2 Create a jot
       .well.bs-component
         = form_for @jot, html: { :multipart => true } do |f|
-          / = f.label :content, 'Your jot'
           = f.text_field :content, class: 'form-control'
           = f.hidden_field :latitude
           = f.hidden_field :longitude

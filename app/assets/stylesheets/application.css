@@ -30,3 +30,15 @@ div.icon{
 span.glyph{
   padding: 25px 15px 0px 15px;
 }
+
+
+html, body, #map-canvas {
+  height: 400px;
+  margin: 0px;
+  padding: 0px;
+}
+#panel {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
